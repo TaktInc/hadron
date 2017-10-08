@@ -197,10 +197,9 @@ encodeMapOutput mrInPrism = C.map conv $= builderToByteString
         [ mconcat (intersperse tab (map fromByteString k))
         , tab
         , fromByteString (review mrInPrism v)
-        , nl ]
+        ]
 
       tab = fromByteString "\t"
-      nl = fromByteString "\n"
 
 
 -------------------------------------------------------------------------------

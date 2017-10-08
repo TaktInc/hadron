@@ -125,9 +125,8 @@ prismToProtocol p =
     Protocol { _protoEnc = C.map (review p) =$= write
              , _protoDec = linesConduit =$= C.map (mkErr . preview p) }
   where
-    write = C.map (\x -> fromByteString x `mappend` nl) =$=
+    write = C.map (\x -> fromByteString x) =$=
             builderToByteString
-    nl = fromByteString "\n"
     mkErr = fromMaybe $
             error "Unexpected: Prism could not decode incoming value."
 
